@@ -13,10 +13,10 @@ jobs:
         include:
           - os: ubuntu-latest
             artifact_name: linux
-            pyinstaller_cmd: pyinstaller --onefile --name CannonCalc-Linux Calculator/calcWindow.py 
+            pyinstaller_cmd: pyinstaller --onefile --name CannonCalc2-Linux Calculator/calcWindow.py 
           - os: windows-latest
             artifact_name: windows
-            pyinstaller_cmd: pyinstaller --onefile --windowed --name CannonCalc-Win Calculator/calcWindow.py
+            pyinstaller_cmd: pyinstaller --onefile --windowed --name CannonCalc2-Win Calculator/calcWindow.py
 
     runs-on: ${{ matrix.os }}
     
@@ -63,13 +63,13 @@ jobs:
           echo "=== Artifact structure ==="
           find ./artifacts -type f -o -type d
           echo "=== Linux files ==="
-          find ./artifacts -name "*CannonCalc*" -type f
+          find ./artifacts -name "*CannonCalc2*" -type f
         
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
           body: "Compiled calculator executables and schematic files"
           files: |
-            ./artifacts/**/*CannonCalc*
+            ./artifacts/**/*CannonCalc2*
             Schematics/*.litematic
           draft: false

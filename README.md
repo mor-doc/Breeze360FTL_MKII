@@ -1,11 +1,13 @@
 
-# Minecraft 360 degree wind charge pearl cannon
+# Minecraft 360 degree wind charge pearl cannon MK II
 
-<img src="Images/1.png" height="150"/> <img src="Images/3.png" height="150"/> <img src="Images/4.png" height="150"/>
+<img src="Images/1.png" height="250"/> <img src="Images/2.png" height="250"/> 
 
-<img src="Images/7.png" height="100"/> <img src="Images/8.png" height="100"/> <img src="Images/9.png" height="100"/>
+<img src="Images/3.png" height="150"/> <img src="Images/4.png" height="150"/>
 
 ## Overview
+
+*( this is an improvement over original cannon - 'MK I', see https://github.com/mor-doc/Breeze360FTL )*
 
 This project contains a Minecraft build of semi-automated, omnidirectional, breeze powered ender pearl cannon. 
 
@@ -15,13 +17,16 @@ Key features:
 - Any firing angle
 - Unlimited distance (limited by game resources)
 - Semi-automated operation
-- Works in Overworld and Nether, no modifications required
-- Fits inside 44x44x44 cube
+- Works in Overworld only
+- Dimensions: 34 x 43 x 17
 - Tested in 1.21.8-1.21.11 Vanilla (Fabric) and on local 1.21.8 Paper server
 
-Limitations / things to optimize:
-- Wind charge generator is optimized for speed and reusability over precision. It can be replaced with one of existing precise single breeze designs or with breeze charge item dispencers. Execution is left as an exercise for the reader
-- Very long distance travel takes progressively more time due to slight upward pearl velocity. Improvement will require very fine adjustments to trajectory of bouncing pearl
+Improvements of this design (MK II) over original (MK I):
+- Fast precision wind charge generator. Manual trim is still required but was simplified a lot
+- Simpler UI
+
+Drawbacks over MK I: 
+- Cannot work in Nether
 
 ## Building cannon
 
@@ -37,86 +42,41 @@ The firing is done by launching the ender pearl and charge stacks vertically up 
 
 ## Operating instruction
 
-Prerequisites: 
-- Cannon must be built above obstacles
-- 1-24 breezes must be nametagged and put into wind charge generator (into fenced cage)
-- Iron golem must be created and put into wind charge generator
-- An item (e.g. redstone torch) must be present in item frame to fully unlock controls
+### Loading breezes into generator
 
-Action sequence:
-1) Look at block behind item frame, in F3 read its coordinate and player's facing direction
-2) Input coordinate and facing direction into calculator to get firing solution
-3) Use item frame to select required quadrant from solution
-4) Choose manual trim via "Do manual trim" lever. It can be disabled if precision is not important
-5) Start generating first stack from solution - load items into hopper to set generator working time (and thus size of charge stack)
-6) Press "Generate wind charge stack" button, wait for lamp above button to turn off
-7) Press "Send stack from generator" button to collect and send the stack
-8) If manual trim is active, go to manual trimming station. If not, skip to step 11
-9) In manual trimming station, look at charge stack with F3 to get entity count. Move camera around to exclude mobs
-10) Punch out wind charges to get exact stack size. Interact with noteblock to send charges away
-11) If more charges for the same stack are required, go to step 5
-12) Press "Feed charge stack into aligner" button to prepare stack for alignment
-13) Use lever to select first slot for charge stack (off state / pointing up)
-14) Press "Run charge stack pre-alignment" button, wait for busy indicator
-15) Repeat steps 5..14 for second stack from solution, but set lever in step 13 to second slot (on state / pointing down)
-16) Run final alignment, wait for busy indicator
-17) Go to launch station
-18) Throw ender pearl vertically up, wait for it to bounce at least once (listen for piston sounds)
-19) Press Fire button, which launches pearl and charges upwards
-20) Wait for pearl to land
+1) Find the breeze holding chamber (look for flat pink concrete area)
+2) Clear the breeze chamber of water and scaffolding, if present
+3) Nametag and trap desired amount of breezes. Note the total amount somewhere
+4) Place water at breezes feet
+5) Place scaffolding into water block
+6) Spawn and push an iron golem on top of iron trapdoor
 
-## Parts explained
+### Firing sequence
 
-### UI panel
-Colored white. Has all control elements to prepare charge stacks for launch. Controls get locked if item frame is empty, or when an operation is ongoing (such as alignments). There is a "System is busy" lamp to indicate when controls are locked.
-
-### Wind charge generator
-Colored pink. Uses trapped breezes to generate wind charges. Breezes must be nametagged and loaded into cage, and iron golem must be created. Accumulation time is controlled by hopper clock. Collected charges are combined into stack and sent out on signal from button. 
-Main drawback of generator is an imprecise stack size, because breezes fire randomly. Single breeze design can be precisely controlled (see [Hectoris919](https://www.youtube.com/watch?v=So3EAnSgX7o) on YouTube), but was not used in favor of speed. Solution to low precisin is the Manual trim station.
-
-An approximate formula to get item count from charge stack size was experimentally derived (using 10 breezes):  
-$y = \dfrac{x}{0.175 * N} + {5.5}$,  
-where y is hopper item count, x is wind charge stack size, N is amount of breezes in generator.  
-Recommended way is to go slightly above and trim down manually.
-
-Related UI controls:
-- Item hopper - part of hopperclock, must be loaded with items to set generator working time. Current design needs to tick down to fully recharge, user can help by manually transfering items from left hopper to right.
-- "Generate wind charge stack" button - starts hopperclock, allows breezes to fire. Lamp was added to indicate end of process.
-- "Send stack from generator" button - gathers frozen wind charges into a single stack, sends it out of generator with small speed.
-
-### Manual trim station
-Colored white. Accessed via tunnel. Only gets used if "Do manual trim" lever is active. User must use F3 Visible Entity counter (first number after "E:") to get stack size. It is recommended to look around to reject background entities, and look a bit to the left to exclude iron golem. Trimming is done by punching out individual wind charges. When done, interact with note block to send off stack.
-
-### Charge alignment & launching mechanism
-Colored red. Uses pistons to align wind charge stacks inside 2x2 working area. During firing launches them into 2x2 pink plate with slime blocks. 
-
-Pre-alignment moves 1st and 2nd stack into their own corner. Final alignment moves both to near-middle of faces. Thus 4 valid stack positions form an angled '+' shape around center, with at most 2 being populated to give correct pearl velocity via vector addition.
-
-Related UI controls:
-- Quadrant selector - selector for firing quadrant. Must be set once in the beginning, serves to select correct alignment sequence
-- "Feed stack into aligner" button - pushes charge stack from staging area into working area
-- "Choose slot for stack in aligner" lever - selects pre-alignment position to move charge stack into. "Off" means first stack, "On" means last stack
-- "Run stack pre-alignment" button - moves charge stack from start of working area into required corner
-- "Run final alignment" button - must be pressed once both stacks are pre-aligned. Moves them into middle of faces
-
-### Ender pearl aligner
-Colored pink. Accessed via tunnel. Aligns and stores an ender pearl from user, releases it on trigger. Mantains precise timings for second pearl bounce and signal to push wind charges. There might be a small random chance of pearl failing to bounce and falling back down. 
-
-User must get into designated area and launch ender pearl vertically up. Pearl gets trapped and bounces on slime block. Pearl trajectory stabilizes after 2nd bounce, user must wait for periodic piston sound. Then user must press "Fire" button. This launches pearl higher up and triggers launch of stored charge stacks.
-
-### Misc redstone logic
-Composed of many colored parts in the left half of build. Handles correct signal sequencing and timing for charge stack alignment. 
-
-### Interconnects
-Colored light blue to tell apart individual modules. 
+1) Look at item frame at the center of cannon's control panel
+2) Read item frame's position and player's facing direction from F3 screen
+3) Open cannon's Python calculator. Input item frame position, player direction and amount of trapped breezes. 
+4) Input target coordinate, press update to get firing solution. (for more info see calculator's README.md)
+5) Select required quadrant by rotating item inside item frame
+6) Generate first wind charge stack. Load required amount of items into dropper
+7) Press button above the dropper, wait for lamp on the left of button to turn off, or for audible wind charge explosion. Wait ~2s more
+8) Click on the noteblock once for each trim count. Use explosion sound as feedback or wait 1s between clicks
+9) Flip the "Select stack to place" lever up
+10) Push "Align stored stack" button
+11) Generate last wind charge stack. Repeat steps 5-7 with new numbers
+12) Wait for "Aligning is in progress" light to dim
+13) Flip the "Select stack to place" lever down
+14) Push "Align stored stack" button
+15) Wait for "Aligning is in progress" light to dim
+16) Enter the launch area, throw ender pearl vertically up
+17) Wait for pearl to shoot and land
 
 ## Contact info
 
-If you have any questions, you can contact me at "max.etching316@passinbox.com".
+If you have any questions, look for cannon's thread in [TNT Archive](https://discord.gg/vPyUBcdmZV) Discord server, in "finished-projects" channel.  
+Alternatively, you can try contacting me at "max.etching316@passinbox.com".
 
 ## License
 
 This work is dedicated to the public domain via CC0 (Creative Commons Zero).  
 While not required, please provide credit (to "mor_doc") when using this work.
-
-

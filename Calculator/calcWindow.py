@@ -88,7 +88,7 @@ def guiMain():
         resultText["state"] = "disabled"
 
     root = Tk()
-    root.title("Wind charge pearl cannon calculator")
+    root.title("Wind charge pearl cannon calculator MK II")
     root.columnconfigure(1, weight=1)
     root.rowconfigure(1, weight=1)
     mainframe = ttk.Frame(root, padding=(3, 3, 3, 3))
@@ -96,9 +96,9 @@ def guiMain():
     mainframe.columnconfigure(2, weight=1)
 
     # Cannon position section
-    ttk.Label(mainframe, text="Cannon state").grid(column=1, row=11, columnspan=2)
+    ttk.Label(mainframe, text="Cannon information").grid(column=1, row=11, columnspan=2)
 
-    ttk.Label(mainframe, text="Coordinate").grid(column=1, row=12, sticky="E")
+    ttk.Label(mainframe, text="Item frame pos").grid(column=1, row=12, sticky="E")
     originCoords = coordinateInput(mainframe)
     originCoords.grid(column=2, row=12)
 
@@ -115,9 +115,9 @@ def guiMain():
 
     # Target select section
     ttk.Separator(mainframe, orient="horizontal").grid(column=1, row=20, columnspan=2, sticky="EW")
-    ttk.Label(mainframe, text="Target position").grid(column=1, row=21, columnspan=2)
+    #ttk.Label(mainframe, text="Target").grid(column=1, row=21, columnspan=2)
 
-    ttk.Label(mainframe, text="Coordinate").grid(column=1, row=22, sticky="E")
+    ttk.Label(mainframe, text="Target position").grid(column=1, row=22, sticky="E")
     targetCoords = coordinateInput(mainframe)
     targetCoords.grid(column=2, row=22)
 
