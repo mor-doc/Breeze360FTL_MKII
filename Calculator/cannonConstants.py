@@ -17,9 +17,6 @@ chargePositions = array([
     [-0.16625, 0.75, +0.84375]       # latest pos in spiral (gets inside 1st block)
     ])
 
-# TODO - error on +x+Z travel, picks wrong quadrant (e.g. +1k +1k says to use top-right quad)
-# TODO - fix the whole mess with quadrants, something went wrong.
-
 # Facing direction of cannon in default orientation. 
 # Taken by looking at item frame
 defaultFacingDir = cardinalDir.SOUTH

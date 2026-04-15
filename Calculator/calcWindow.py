@@ -71,9 +71,9 @@ def guiMain():
         breezeAmtClean = int(breezeAmtStr.get()) if breezeAmtStr.get().isdecimal() else 0
         quadDecode = ["Bottom-Left", "Top-left", "Top-Right", "Bottom-Right"]
         firstItems = (firstStack + breezeAmtClean - 1) // breezeAmtClean
-        firstTrims = firstStack - firstItems * breezeAmtClean
+        firstTrims = firstItems * breezeAmtClean - firstStack
         lastItems = (lastStack + breezeAmtClean - 1) // breezeAmtClean
-        lastTrims = lastStack - lastItems * breezeAmtClean
+        lastTrims = lastItems * breezeAmtClean - lastStack
         resultPrint = (
             f"Target position: {array2string(targetPos, precision=2, separator="; ")}\n"
             f"Sector in UI: {quadId + 1} ({quadDecode[quadId]})\n"

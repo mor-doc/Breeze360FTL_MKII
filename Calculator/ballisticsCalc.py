@@ -140,8 +140,6 @@ def getLocalQuadData(targetOffs : ndarray) -> tuple[int, ndarray, ndarray]:
         tuple[launchQuadId, ndarray, ndarray]: id of quadrant inside aligner, position of first charge stack, position of last charge stack
     """
     
-    # TODO - test
-    
     targetAngleDeg = mod(rad2deg(arctan2(targetOffs[2], targetOffs[0])) + 360 + 180, 360)
     
     # Make array with angles and indices, like in Excel (must be sorted to ascending angle)
@@ -167,10 +165,10 @@ def getLocalQuadData(targetOffs : ndarray) -> tuple[int, ndarray, ndarray]:
     thisQuad = (nextQuad - 1) % 4
     
     # Assign first and least stacks - flip order depending on quad number
-    cwStack = ccon.chargePositions[thisQuad]
-    ccwStack = ccon.chargePositions[nextQuad]
+    cwStack = ccon.chargePositions[nextQuad]
+    ccwStack = ccon.chargePositions[thisQuad]
     alignerQuad = (thisQuad + 1) % 4
-    if(thisQuad == 0):
+    if(alignerQuad == 0):
         return (alignerQuad, ccwStack, cwStack)
     else:
         return (alignerQuad, cwStack, ccwStack)
