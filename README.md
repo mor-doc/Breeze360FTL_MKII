@@ -42,6 +42,8 @@ The firing is done by launching the ender pearl and charge stacks vertically up 
 
 ## Operating instruction
 
+[Video of example shot](https://www.youtube.com/watch?v=_UKjG0guAhI)
+
 ### Loading breezes into generator
 
 1) Find the breeze holding chamber (look for flat pink concrete area)
@@ -70,10 +72,6 @@ The firing is done by launching the ender pearl and charge stacks vertically up 
 15) Wait for "Aligning is in progress" light to dim
 16) Enter the launch area, throw ender pearl vertically up
 17) Wait for pearl to shoot and land
-
-### Example shot
-
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/_UKjG0guAhI?si=4Q74jldHikSmo8j0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Contact info
 
