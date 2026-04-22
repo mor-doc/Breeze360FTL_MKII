@@ -11,7 +11,7 @@
 
 This project contains a Minecraft build of semi-automated, omnidirectional, breeze powered ender pearl cannon. 
 
-Additionally, a ballistic calculator is written in Python. It converts data about cannon and target into a firing solution. See manual in Calculator folder.
+Additionally, a ballistic calculator is written in Python. It converts data about cannon and target into a firing solution. See manual in Calculator folder. Pre-compiled binary can be downloaded from Releases section of repo.
 
 Key features:
 - Any firing angle
@@ -70,6 +70,10 @@ The firing is done by launching the ender pearl and charge stacks vertically up 
 15) Wait for "Aligning is in progress" light to dim
 16) Enter the launch area, throw ender pearl vertically up
 17) Wait for pearl to shoot and land
+
+### Example shot
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/_UKjG0guAhI?si=4Q74jldHikSmo8j0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Contact info
 

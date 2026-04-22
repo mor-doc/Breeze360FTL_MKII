@@ -33,4 +33,6 @@ To build project into an executable, use Pyinstaller. From virtual environment o
 
 Resulting cannon settings contain sector for item frame selector, stack sizes for first and second wind charge stacks, closest real pearl position, and time of flight in gameticks.
 
-Error between target position and closest real pearl position is typically < 100 blocks.
+Error between desired target position and closest real pearl position is typically < 100 blocks.
+
+Actual player position might be closer than predicted by 1 flight tick due to pearl collision logic.

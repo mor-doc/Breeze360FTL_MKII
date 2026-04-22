@@ -140,7 +140,9 @@ def getLocalQuadData(targetOffs : ndarray) -> tuple[int, ndarray, ndarray]:
         tuple[launchQuadId, ndarray, ndarray]: id of quadrant inside aligner, position of first charge stack, position of last charge stack
     """
     
-    targetAngleDeg = mod(rad2deg(arctan2(targetOffs[2], targetOffs[0])) + 360 + 180, 360)
+    # Issue - quad boundaaries are wrong, on some edge cases gives negative charges
+    
+    targetAngleDeg = mod(rad2deg(arctan2(targetOffs[2], targetOffs[0])) + 360, 360)
     
     # Make array with angles and indices, like in Excel (must be sorted to ascending angle)
     quadAngleArr = list()
@@ -149,7 +151,7 @@ def getLocalQuadData(targetOffs : ndarray) -> tuple[int, ndarray, ndarray]:
             ccon.chargePositions[i][2] - ccon.pearlPosition[2],
             ccon.chargePositions[i][0] - ccon.pearlPosition[0] 
             )) + 180
-        quadId = (i+2)%4
+        quadId = i
         quadAngleArr.append((quadId, angle))
         quadAngleArr.append((quadId, angle - 360))
         quadAngleArr.append((quadId, angle + 360))
